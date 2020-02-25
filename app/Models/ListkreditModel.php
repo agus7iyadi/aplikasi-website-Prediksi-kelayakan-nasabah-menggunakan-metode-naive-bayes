@@ -32,6 +32,14 @@ class ListkreditModel extends Model
         // Melakukan insert data ke dalam table
         return $this->table2->insert($data);
     }
+    public function getporpabilitaslancar(){  
+        $status ='Lancar';
+        return $this->table->where('kolektabilitas', $status)->get()->getResultArray();
+    }
+    public function getporpabilitastidaklancar(){  
+        $status ='Tidak Lancar';
+        return $this->table->where('kolektabilitas', $status)->get()->getResultArray();
+    }
     public function getgaji($gaji){  
         return $this->table->where('gaji', $gaji)->get()->getResultArray();
 

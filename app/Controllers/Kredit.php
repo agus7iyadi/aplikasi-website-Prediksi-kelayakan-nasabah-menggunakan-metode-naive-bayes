@@ -228,11 +228,16 @@ class Kredit extends Controller
             $hasil6b = count($agunan_tidaklancar);
         }
 
-        $total_lancar = (($hasil1a/$lancar)*($hasil2a/$lancar)*($hasil3a/$lancar)*($hasil4a/$lancar)*($hasil5a/$lancar)*($hasil6a/$lancar));
+        $porbabilitaslancar = $this->ListkreditModel->getporpabilitaslancar();
+        $hpl = count($porbabilitaslancar);
+        $porbabilitastidaklancar = $this->ListkreditModel->getporpabilitastidaklancar();
+        $hptl = count($porbabilitastidaklancar);
+        
 
-        $total_tidaklancar = (($hasil1b/$tidaklancar)*($hasil2b/$tidaklancar)*($hasil3b/$tidaklancar)*($hasil4b/$tidaklancar)*($hasil5b/$tidaklancar)*($hasil6b/$tidaklancar));
+        $total_lancar = (($hasil1a/$lancar)*($hasil2a/$lancar)*($hasil3a/$lancar)*($hasil4a/$lancar)*($hasil5a/$lancar)*($hasil6a/$lancar)*$hpl);
+        
 
-
+        $total_tidaklancar = (($hasil1b/$tidaklancar)*($hasil2b/$tidaklancar)*($hasil3b/$tidaklancar)*($hasil4b/$tidaklancar)*($hasil5b/$tidaklancar)*($hasil6b/$tidaklancar)*$hptl);
         if($total_lancar > $total_tidaklancar){
             $prediksi = 'Lancar';
         }elseif($total_lancar < $total_tidaklancar){
